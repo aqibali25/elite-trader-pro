@@ -42,7 +42,9 @@
           : n.queue.push(arguments);
       };
 
-      if (!f._fbq) f._fbq = n;
+      if (!f._fbq) {
+        f._fbq = n;
+      }
 
       n.push = n;
       n.loaded = true;
@@ -340,17 +342,33 @@
         return;
       }
 
-      let eventSent = false;
+      let eventsSent = false;
 
       telegramJoinButton.addEventListener('click', function () {
-        if (eventSent) {
+        if (eventsSent) {
           return;
         }
 
-        eventSent = true;
+        eventsSent = true;
 
         if (typeof fbq === 'function') {
+          /*
+           * Standard Subscribe event.
+           * Used by the existing campaign.
+           */
+          fbq('track', 'Subscribe', {
+            content_name: 'Elite Trader Pro Telegram Channel',
+            content_category: 'Market Education',
+            destination: 'telegram'
+          });
+
+          /*
+           * Custom Telegram button-click event.
+           * Used by the new campaign.
+           */
           fbq('trackCustom', 'TelegramButtonClick', {
+            content_name: 'Elite Trader Pro Telegram Channel',
+            content_category: 'Market Education',
             destination: 'telegram',
             channel: 'elite_trader_pro',
             page_url: window.location.href
@@ -359,8 +377,11 @@
           console.warn('Meta Pixel is not available.');
         }
 
+        /*
+         * Prevent accidental duplicate events from rapid clicking.
+         */
         window.setTimeout(function () {
-          eventSent = false;
+          eventsSent = false;
         }, 1500);
       });
     });

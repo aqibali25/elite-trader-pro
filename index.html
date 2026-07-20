@@ -208,20 +208,33 @@
     </section>
 
     <a
-      class="join-cta"
-      href="https://t.me/+RDct0qw-TeM2YWZk"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Join Elite Trader Pro on Telegram"
-      onclick="fbq('track', 'Lead')"
-    >
-      <span class="cta-icon">➤</span>
-      <span class="cta-text">
-        <strong>JOIN ELITE TRADER PRO</strong>
-        <small>OPEN THE FREE TELEGRAM CHANNEL</small>
-      </span>
-      <span class="cta-arrow">↗</span>
-    </a>
+  class="join-cta"
+  href="https://t.me/+RDct0qw-TeM2YWZk"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Join Elite Trader Pro on Telegram"
+  id="telegramJoinButton"
+>
+  <span class="cta-icon">➤</span>
+  <span class="cta-text">
+    <strong>JOIN ELITE TRADER PRO</strong>
+    <small>OPEN THE FREE TELEGRAM CHANNEL</small>
+  </span>
+  <span class="cta-arrow">↗</span>
+</a>
+
+<script>
+  const telegramJoinButton = document.getElementById('telegramJoinButton');
+
+  telegramJoinButton.addEventListener('click', function () {
+    if (typeof fbq === 'function') {
+      fbq('track', 'Subscribe', {
+        content_name: 'Elite Trader Pro Telegram Channel',
+        content_category: 'Market Education'
+      });
+    }
+  });
+</script>
 
     <p class="disclaimer" style="text-align:center; color:#8d97a8; font-size:11px; max-width:560px; margin:14px auto 0; padding:0 16px;">
       Educational content only. Not financial advice. Nothing shared in this channel is a recommendation to buy or sell any asset. Trading involves risk.
